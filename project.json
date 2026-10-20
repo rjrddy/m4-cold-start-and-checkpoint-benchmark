@@ -1,0 +1,27 @@
+{
+  "id": "M4",
+  "name": "Cold-start and checkpoint benchmark",
+  "problem": "Reproducible benchmark of container and process start/restore times across kernels, with a regression gate. Pair with an upstream PR.",
+  "results": [
+    [
+      "Process configurations measured",
+      "configurations_measured",
+      ""
+    ],
+    [
+      "Process launches measured",
+      "process_runs",
+      ""
+    ],
+    [
+      "CRIU restores measured",
+      "criu_restores",
+      ""
+    ]
+  ],
+  "diagram": "ThreeProcessConfigs --> WallClockTiming --> SnapshotRead --> RegressionGate",
+  "limits": "Partial: measurements cover three real Python process configurations on this host, not three kernels, container cold starts, or CRIU restoration. The snapshot case deserializes application state; it is explicitly not process checkpoint restoration. No upstream target-repo PR was fabricated; the required substantive upstream PR remains absent. See evidence/baseline.json and evidence/gate-failure.log for the actual measured slowdown gate. Docker and CRIU are unavailable locally.",
+  "next": "Run a Linux kernel/configuration matrix with Docker and CRIU, then contribute a substantive benchmark or compatibility fix upstream.",
+  "status": "partial: container/kernel/CRIU matrix and upstream PR missing",
+  "command": ".venv/bin/python src/main.py --gate --inject-ms 500  # expected exit 1"
+}

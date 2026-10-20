@@ -1,0 +1,4 @@
+$ .venv/bin/python src/main.py --gate --inject-ms 500
+{"p99_ms": 541.6915410896763, "budget_ms": 73.75645795837045, "passed": false}
+
+exit_code=1
